@@ -1,0 +1,7 @@
+type: module
+name: 'Speak'
+description: 'Allows translations to be imported locally from the translations/ directory of each available extension.'
+package: 'Stereo Express'
+
+core_version_requirement: ^9.0 || ^10.0
+php: 8.1

@@ -1,0 +1,12 @@
+{
+    "name": "stereo-express/speak",
+    "description": "Allows translations to be imported locally from the translations/ directory of each available extension.",
+    "type": "drupal-custom-module",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Marc-Olivier Fortin",
+            "email": "info@marcolivierfortin.com"
+        }
+    ]
+}

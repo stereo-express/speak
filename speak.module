@@ -1,0 +1,38 @@
+<?php
+
+/**
+ * @file
+ * Contains speak.module.
+ */
+
+use Drupal\Core\Extension\ExtensionList;
+
+/**
+ * Implements hook_locale_translation_projects_alter().
+ *
+ * @see hook_locale_translation_projects_alter()
+ *
+ * @noinspection PhpUnused
+ */
+function speak_locale_translation_projects_alter(array &$projects): void {
+  $extensionTypes = ['module', 'profile', 'theme'];
+
+  foreach ($extensionTypes as $extensionType) {
+    /** @var ExtensionList $extensionManager */
+    $extensionManager = Drupal::service('extension.list.' . $extensionType);
+
+    $installedExtensions = $extensionManager->getAllInstalledInfo();
+
+    foreach ($installedExtensions as $extensionMachineName => $extensionInfo) {
+      $extensionPath = $extensionManager->getPath($extensionMachineName);
+
+      // If the extension has a translations/ directory.
+      if (file_exists($extensionPath . '/translations/')) {
+        $projects[$extensionMachineName]['info'] = [
+          'interface translation project' => $extensionMachineName,
+          'interface translation server pattern' => $extensionPath . '/translations/%project.%language.po',
+        ];
+      }
+    }
+  }
+}
